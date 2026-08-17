@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Пример списка мебели: таблица с позициями, размерами, ссылками и ценами">
+  <defs>
+    <style>
+      .t   { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+      .h   { font-family: Georgia, "Times New Roman", serif; }
+      .lbl { font-size: 11px; letter-spacing: 1.4px; fill: #7B736A; }
+      .cell{ font-size: 14px; fill: #33302B; }
+      .sub { font-size: 12px; fill: #7B736A; }
+      .num { font-size: 14px; fill: #33302B; font-variant-numeric: tabular-nums; }
+    </style>
+  </defs>
+
+  <rect width="800" height="600" fill="#EDE7DE"/>
+  <!-- лист бумаги -->
+  <rect x="56" y="34" width="688" height="540" fill="#FFFFFF"/>
+  <rect x="56" y="34" width="688" height="540" fill="none" stroke="#E8E1D7"/>
+
+  <!-- шапка документа -->
+  <text class="h" x="92" y="88" font-size="24" fill="#33302B">Список мебели и декора</text>
+  <text class="t lbl" x="92" y="110">ДЕТСКАЯ 14,2 М² · РЕБЁНОК 9 ЛЕТ</text>
+  <path d="M92 132 H708" stroke="#33302B" stroke-width="1"/>
+
+  <!-- заголовки колонок -->
+  <text class="t lbl" x="92"  y="158">ПОЗИЦИЯ</text>
+  <text class="t lbl" x="392" y="158">РАЗМЕР, СМ</text>
+  <text class="t lbl" x="540" y="158">ГДЕ КУПИТЬ</text>
+  <text class="t lbl" x="708" y="158" text-anchor="end">ЦЕНА</text>
+  <path d="M92 170 H708" stroke="#E8E1D7"/>
+
+  <!-- строки -->
+  <g>
+    <text class="t cell" x="92"  y="198">Кровать с ящиками</text>
+    <text class="t sub"  x="92"  y="216">массив, бельевой ящик под спальным местом</text>
+    <text class="t cell" x="392" y="198">90 × 190</text>
+    <text class="t cell" x="540" y="198">ссылка</text>
+    <text class="t num"  x="708" y="198" text-anchor="end">24 900 ₽</text>
+    <path d="M92 232 H708" stroke="#F0EAE2"/>
+
+    <text class="t cell" x="92"  y="260">Стол у окна</text>
+    <text class="t sub"  x="92"  y="278">регулируемая высота, растёт вместе с ребёнком</text>
+    <text class="t cell" x="392" y="260">120 × 60</text>
+    <text class="t cell" x="540" y="260">ссылка</text>
+    <text class="t num"  x="708" y="260" text-anchor="end">11 400 ₽</text>
+    <path d="M92 294 H708" stroke="#F0EAE2"/>
+
+    <text class="t cell" x="92"  y="322">Стеллаж открытый</text>
+    <text class="t sub"  x="92"  y="340">нижние полки на уровне роста — убирает сам</text>
+    <text class="t cell" x="392" y="322">80 × 106</text>
+    <text class="t cell" x="540" y="322">ссылка</text>
+    <text class="t num"  x="708" y="322" text-anchor="end">6 990 ₽</text>
+    <path d="M92 356 H708" stroke="#F0EAE2"/>
+
+    <text class="t cell" x="92"  y="384">Ящики для игрушек, 4 шт.</text>
+    <text class="t sub"  x="92"  y="402">на колёсах, задвигаются под кровать</text>
+    <text class="t cell" x="392" y="384">60 × 40 × 18</text>
+    <text class="t cell" x="540" y="384">ссылка</text>
+    <text class="t num"  x="708" y="384" text-anchor="end">3 160 ₽</text>
+    <path d="M92 418 H708" stroke="#F0EAE2"/>
+
+    <text class="t cell" x="92"  y="446">Лампа настольная</text>
+    <text class="t sub"  x="92"  y="464">тёплый свет 3000K, слева от рабочей руки</text>
+    <text class="t cell" x="392" y="446">выс. 44</text>
+    <text class="t cell" x="540" y="446">ссылка</text>
+    <text class="t num"  x="708" y="446" text-anchor="end">2 490 ₽</text>
+    <path d="M92 480 H708" stroke="#F0EAE2"/>
+
+    <text class="t cell" x="92"  y="508">Ковёр в игровой зоне</text>
+    <text class="t sub"  x="92"  y="526">короткий ворс, стирается в машине</text>
+    <text class="t cell" x="392" y="508">160 × 230</text>
+    <text class="t cell" x="540" y="508">ссылка</text>
+    <text class="t num"  x="708" y="508" text-anchor="end">8 700 ₽</text>
+  </g>
+
+  <!-- итог -->
+  <path d="M92 534 H708" stroke="#33302B"/>
+  <text class="t lbl" x="92" y="558">ИТОГО ПО СПИСКУ</text>
+  <text class="h"     x="708" y="560" font-size="18" fill="#33302B" text-anchor="end">57 640 ₽</text>
+
+  <!-- подчёркивание ссылок -->
+  <g stroke="#4F6B44">
+    <path d="M540 202 H578"/>
+    <path d="M540 264 H578"/>
+    <path d="M540 326 H578"/>
+    <path d="M540 388 H578"/>
+    <path d="M540 450 H578"/>
+    <path d="M540 512 H578"/>
+  </g>
+  <g fill="#4F6B44" class="t" font-size="14">
+    <text x="540" y="198">ссылка</text>
+    <text x="540" y="260">ссылка</text>
+    <text x="540" y="322">ссылка</text>
+    <text x="540" y="384">ссылка</text>
+    <text x="540" y="446">ссылка</text>
+    <text x="540" y="508">ссылка</text>
+  </g>
+</svg>

@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Дизайн детской с участием детского психолога: консультации, планировка, визуальная концепция и список мебели в одном проекте.">
+  <meta name="theme-color" content="#263126">
+  <title>Идеальная детская — дизайн, который начинается с ребёнка</title>
+  <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
+  <style>
+    @font-face {
+      font-family: "Prata";
+      src: url("fonts/prata-cyrillic.woff2") format("woff2");
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Golos";
+      src: url("fonts/golos-text-cyrillic.woff2") format("woff2");
+      font-display: swap;
+    }
+
+    :root {
+      --paper: #f8f5ef;
+      --paper-2: #eee8de;
+      --paper-3: #e1d7c8;
+      --ink: #292822;
+      --muted: #706c63;
+      --olive: #526148;
+      --olive-deep: #263126;
+      --olive-soft: #dce1d6;
+      --clay: #a85f49;
+      --rose: #9a6d70;
+      --line: rgba(41, 40, 34, .16);
+      --white: #fffdf9;
+      --radius: 2px;
+      --shadow: 0 24px 70px rgba(26, 29, 24, .15);
+      --wrap: min(1380px, calc(100% - 64px));
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Golos", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    body.menu-open { overflow: hidden; }
+    img { display: block; width: 100%; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 {
+      font-family: "Prata", Georgia, serif;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.025em;
+      text-wrap: balance;
+    }
+    h1 { font-size: clamp(3.2rem, 6.4vw, 6.7rem); margin-bottom: 1.5rem; }
+    h2 { font-size: clamp(2.5rem, 4.8vw, 5.2rem); margin-bottom: 1.5rem; }
+    h3 { font-size: clamp(1.45rem, 2.2vw, 2.25rem); }
+    ::selection { background: var(--olive); color: var(--white); }
+    :focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
+
+    .wrap { width: var(--wrap); margin-inline: auto; }
+    .section { padding: clamp(6rem, 10vw, 10rem) 0; }
+    .lead {
+      max-width: 720px;
+      color: var(--muted);
+      font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+      line-height: 1.55;
+    }
+    .button {
+      display: inline-flex;
+      min-height: 58px;
+      align-items: center;
+      justify-content: center;
+      gap: .8rem;
+      padding: .95rem 1.55rem;
+      border: 1px solid var(--olive);
+      border-radius: var(--radius);
+      background: var(--olive);
+      color: var(--white);
+      font-size: .96rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-align: center;
+      text-decoration: none;
+      transition: background .25s ease, color .25s ease, transform .25s ease;
+    }
+    .button::after { content: "→"; font-size: 1.15rem; }
+    .button:hover { background: var(--olive-deep); transform: translateY(-2px); }
+    .button--light { border-color: var(--white); background: var(--white); color: var(--olive-deep); }
+    .button--light:hover { background: var(--paper-2); }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255, 255, 255, .2);
+      color: var(--white);
+      transition: background .25s ease, color .25s ease, border-color .25s ease;
+    }
+    .site-header.scrolled {
+      border-color: var(--line);
+      background: rgba(248, 245, 239, .94);
+      color: var(--ink);
+      backdrop-filter: blur(14px);
+    }
+    .nav {
+      width: var(--wrap);
+      min-height: 78px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 2rem;
+    }
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      font-family: "Prata", Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.15;
+      text-decoration: none;
+    }
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      aspect-ratio: 1;
+      border: 1px solid currentColor;
+      place-items: center;
+      font-family: "Golos", sans-serif;
+      font-size: .63rem;
+      letter-spacing: .05em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      font-size: .82rem;
+      text-decoration: none;
+      transition: opacity .2s ease;
+    }
+    .nav-links a:hover { opacity: .62; }
+    .nav-cta { justify-self: end; font-size: .82rem; font-weight: 600; text-decoration: none; }
+    .menu-button {
+      display: none;
+      justify-self: end;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 600;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--olive-deep);
+      color: var(--white);
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(19, 25, 19, .86) 0%, rgba(19, 25, 19, .58) 37%, rgba(19, 25, 19, .05) 72%), linear-gradient(0deg, rgba(19, 25, 19, .5), transparent 45%);
+    }
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      height: 100%;
+      object-fit: cover;
+      object-position: 53% center;
+    }
+    .hero-content {
+      width: var(--wrap);
+      margin: 0 auto;
+      padding: 11rem 0 4.5rem;
+    }
+    .hero-copy { max-width: 860px; }
+    .hero-lead {
+      max-width: 690px;
+      margin-bottom: 2rem;
+      color: rgba(255, 253, 249, .84);
+      font-size: clamp(1.15rem, 1.65vw, 1.45rem);
+      line-height: 1.55;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem; }
+    .hero-credit {
+      position: absolute;
+      right: 2rem;
+      bottom: 2rem;
+      margin: 0;
+      color: rgba(255, 255, 255, .62);
+      font-size: .68rem;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+    }
+
+    .recognition { background: var(--white); }
+    .recognition-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .65fr);
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: clamp(4rem, 7vw, 7rem);
+    }
+    .recognition-head h2 { max-width: 850px; margin-bottom: 0; }
+    .recognition-head p { margin: 0; color: var(--muted); }
+    .pains {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .pain { min-height: 310px; padding: 2rem 2.1rem 2rem 0; }
+    .pain + .pain { padding-left: 2.1rem; border-left: 1px solid var(--line); }
+    .pain-number { color: var(--rose); font-family: "Prata", serif; font-size: 1rem; }
+    .pain h3 { margin: 4.5rem 0 1rem; font-size: clamp(1.45rem, 2.25vw, 2.15rem); }
+    .pain p { max-width: 360px; margin-bottom: 0; color: var(--muted); }
+    .recognition-bottom {
+      max-width: 860px;
+      margin: 4rem 0 0 auto;
+      font-family: "Prata", serif;
+      font-size: clamp(1.45rem, 2.4vw, 2.35rem);
+      line-height: 1.35;
+    }
+
+    .portfolio { background: var(--olive-deep); color: var(--white); }
+    .portfolio-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: 5rem;
+    }
+    .portfolio-intro h2 { margin-bottom: 0; }
+    .portfolio-intro .lead { margin-bottom: 0; color: rgba(255, 255, 255, .66); }
+    .project { margin-top: clamp(5rem, 9vw, 9rem); }
+    .project:first-of-type { margin-top: 0; }
+    .project-image-wrap { position: relative; overflow: hidden; background: #1d241c; }
+    .project-image { height: min(76vh, 920px); object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    .project:hover .project-image { transform: scale(1.015); }
+    .project--junior .project-image { object-position: center; }
+    .project--shared .project-image { object-position: center 48%; }
+    .project--teen .project-image { object-position: center; }
+    .project-caption {
+      position: relative;
+      width: calc(100% - 5rem);
+      max-width: 1100px;
+      margin: -5.5rem 0 0 auto;
+      padding: clamp(2rem, 4vw, 4rem);
+      display: grid;
+      grid-template-columns: .55fr 1.2fr .9fr;
+      gap: 3rem;
+      background: var(--paper);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+    }
+    .project-id { color: var(--rose); font-size: .76rem; letter-spacing: .14em; text-transform: uppercase; }
+    .project-caption h3 { margin-bottom: .75rem; }
+    .project-meta { color: var(--muted); font-size: .86rem; }
+    .project-caption p { margin-bottom: 0; color: var(--muted); }
+    .project-result { padding-left: 1.5rem; border-left: 1px solid var(--line); }
+    .project-result b { display: block; margin-bottom: .7rem; color: var(--ink); font-size: .76rem; letter-spacing: .12em; text-transform: uppercase; }
+
+    .method { overflow: hidden; }
+    .method-grid {
+      display: grid;
+      grid-template-columns: minmax(360px, .95fr) minmax(0, 1.05fr);
+      gap: clamp(3rem, 7vw, 7rem);
+      align-items: center;
+    }
+    .portrait-wrap { position: relative; }
+    .portrait-frame {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--paper-2);
+    }
+    .portrait {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 45%;
+    }
+    .portrait-label {
+      position: absolute;
+      right: 1.5rem;
+      bottom: -1.5rem;
+      max-width: 240px;
+      padding: 1.25rem;
+      background: var(--olive-deep);
+      color: var(--white);
+      font-size: .78rem;
+      line-height: 1.5;
+    }
+    .method-copy .lead { margin-bottom: 3rem; }
+    .method-points { border-top: 1px solid var(--line); }
+    .method-point {
+      display: grid;
+      grid-template-columns: 3.2rem 1fr;
+      gap: 1.25rem;
+      padding: 1.45rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+    .method-point span { color: var(--rose); font-family: "Prata", serif; }
+    .method-point h3 { margin: 0 0 .35rem; font-family: "Golos", sans-serif; font-size: 1.05rem; font-weight: 600; letter-spacing: 0; }
+    .method-point p { margin-bottom: 0; color: var(--muted); font-size: .93rem; }
+
+    .offer { background: var(--paper-2); }
+    .offer-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
+      gap: 5rem;
+      align-items: end;
+      margin-bottom: 4.5rem;
+    }
+    .offer-head h2 { margin-bottom: 0; }
+    .offer-head p { margin-bottom: 0; color: var(--muted); }
+    .offer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(360px, .72fr);
+      gap: 2rem;
+      align-items: start;
+    }
+    .deliverables { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); }
+    .deliverable {
+      min-height: 280px;
+      padding: 2rem;
+      background: rgba(255, 253, 249, .45);
+    }
+    .deliverable:nth-child(even) { border-left: 1px solid var(--line); }
+    .deliverable:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .deliverable-index { color: var(--clay); font-size: .75rem; letter-spacing: .13em; }
+    .deliverable h3 { margin: 3.8rem 0 .9rem; font-size: 1.45rem; }
+    .deliverable p { margin-bottom: 0; color: var(--muted); font-size: .9rem; }
+    .price-card {
+      position: sticky;
+      top: 110px;
+      padding: clamp(2rem, 4vw, 3.5rem);
+      background: var(--olive-deep);
+      color: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .price { margin: 1.4rem 0 .2rem; font-family: "Prata", serif; font-size: clamp(3rem, 5vw, 5rem); line-height: 1; }
+    .price-note { color: rgba(255, 255, 255, .62); font-size: .82rem; }
+    .price-list { margin: 2.4rem 0; padding: 0; list-style: none; border-top: 1px solid rgba(255,255,255,.2); }
+    .price-list li { padding: .85rem 0; display: flex; gap: .7rem; border-bottom: 1px solid rgba(255,255,255,.2); font-size: .9rem; }
+    .price-list li::before { content: "—"; color: #dfaa93; }
+    .price-card .button { width: 100%; }
+
+    .process { background: var(--white); }
+    .process-head { max-width: 900px; margin-bottom: 5rem; }
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: .25fr .8fr 1.1fr;
+      gap: 2rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
+    }
+    .timeline-index { color: var(--rose); font-family: "Prata", serif; }
+    .timeline-item h3 { margin: 0; font-family: "Golos", sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0; }
+    .timeline-item p { margin: 0; color: var(--muted); }
+
+    .detail-break {
+      position: relative;
+      min-height: min(78vh, 880px);
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+      background: #211e18;
+      color: var(--white);
+    }
+    .detail-break::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(21,25,19,.78), rgba(21,25,19,0) 65%); }
+    .detail-break img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center; }
+    .detail-copy { position: relative; z-index: 1; width: var(--wrap); margin: 0 auto; padding: 4rem 0; }
+    .detail-copy p { max-width: 720px; margin-bottom: 0; font-family: "Prata", serif; font-size: clamp(2rem, 4vw, 4.6rem); line-height: 1.15; }
+
+    .faq { background: var(--paper); }
+    .faq-grid { display: grid; grid-template-columns: .72fr 1.28fr; gap: clamp(4rem, 9vw, 10rem); }
+    .faq-copy { position: sticky; top: 120px; align-self: start; }
+    .faq-copy p { color: var(--muted); }
+    details { border-top: 1px solid var(--line); }
+    details:last-child { border-bottom: 1px solid var(--line); }
+    summary {
+      padding: 1.45rem 2.5rem 1.45rem 0;
+      position: relative;
+      cursor: pointer;
+      list-style: none;
+      font-weight: 600;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; position: absolute; right: 0; top: 1.35rem; color: var(--rose); font-family: "Prata", serif; font-size: 1.45rem; }
+    details[open] summary::after { content: "−"; }
+    details p { max-width: 780px; padding: 0 2.5rem 1.6rem 0; margin: 0; color: var(--muted); }
+
+    .contact { position: relative; overflow: hidden; background: var(--olive-deep); color: var(--white); }
+    .contact::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 90% 10%, rgba(168, 95, 73, .22), transparent 34%);
+      pointer-events: none;
+    }
+    .contact-grid { position: relative; display: grid; grid-template-columns: 1fr .78fr; gap: clamp(4rem, 8vw, 9rem); align-items: end; }
+    .contact h2 { max-width: 900px; }
+    .contact .lead { color: rgba(255,255,255,.68); }
+    .contact-list { margin: 2rem 0 0; padding: 0; list-style: none; }
+    .contact-list li { margin-top: .55rem; color: rgba(255,255,255,.78); font-size: .92rem; }
+    .contact-list li::before { content: "— "; color: #dfaa93; }
+    .contact-form { padding: clamp(2rem, 4vw, 3rem); background: var(--paper); color: var(--ink); }
+    .contact-form h3 { margin-bottom: 1.5rem; }
+    .field { margin-top: 1rem; }
+    .field label { display: block; margin-bottom: .4rem; color: var(--muted); font-size: .77rem; }
+    .field input {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      background: transparent;
+      color: var(--ink);
+    }
+    .field input::placeholder { color: #aaa398; }
+    .contact-form .button { width: 100%; margin-top: 2rem; border: 0; cursor: pointer; }
+    .form-message { min-height: 1.5em; margin: .8rem 0 0; color: var(--rose); font-size: .78rem; }
+    .privacy { margin: .75rem 0 0; color: var(--muted); font-size: .7rem; line-height: 1.45; }
+
+    footer { padding: 2.2rem 0; background: #171d17; color: rgba(255,255,255,.55); font-size: .73rem; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 2rem; }
+    .preview-note { color: rgba(255,255,255,.4); }
+
+    [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+    [data-reveal].visible { opacity: 1; transform: none; }
+
+    @media (max-width: 1000px) {
+      :root { --wrap: min(100% - 40px, 1380px); }
+      .nav { grid-template-columns: 1fr auto; }
+      .nav-links, .nav-cta { display: none; }
+      .menu-button { display: block; }
+      .nav-links.open {
+        position: fixed;
+        inset: 78px 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 3rem 20px;
+        background: var(--paper);
+        color: var(--ink);
+      }
+      .nav-links.open a { font-family: "Prata", serif; font-size: 2rem; }
+      .recognition-head, .portfolio-intro, .offer-head { grid-template-columns: 1fr; gap: 1.5rem; }
+      .project-caption { width: calc(100% - 2rem); grid-template-columns: .4fr 1fr; }
+      .project-result { grid-column: 2; }
+      .method-grid, .offer-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; }
+      .portrait-wrap { max-width: 650px; }
+      .price-card, .faq-copy { position: static; }
+      .contact-form { max-width: 680px; }
+    }
+
+    @media (max-width: 720px) {
+      :root { --wrap: calc(100% - 32px); }
+      body { font-size: 16px; }
+      .section { padding: 5.5rem 0; }
+      .nav { min-height: 68px; }
+      .nav-links.open { inset: 68px 0 0; }
+      .hero { min-height: 920px; }
+      .hero::after { background: linear-gradient(0deg, rgba(19,25,19,.92) 0%, rgba(19,25,19,.58) 60%, rgba(19,25,19,.12) 100%); }
+      .hero-image { object-position: 56% center; }
+      .hero-content { padding: 9rem 0 2.5rem; }
+      h1 { font-size: clamp(2.75rem, 13vw, 4.4rem); }
+      .hero-lead { font-size: 1.05rem; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .hero-actions .button { width: 100%; }
+      .hero-credit { display: none; }
+      .pains { grid-template-columns: 1fr; }
+      .pain { min-height: auto; padding: 1.5rem 0 2rem; }
+      .pain + .pain { padding-left: 0; border-top: 1px solid var(--line); border-left: 0; }
+      .pain h3 { margin: 2rem 0 .8rem; }
+      .recognition-bottom { margin-top: 3rem; }
+      .portfolio-intro { margin-bottom: 3rem; }
+      .project { margin-top: 5rem; }
+      .project-image { height: 64vh; min-height: 520px; }
+      .project-caption { width: 100%; margin: 0; padding: 1.8rem 0; grid-template-columns: 1fr; gap: .8rem; background: transparent; color: var(--white); box-shadow: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+      .project-meta, .project-caption p { color: rgba(255,255,255,.64); }
+      .project-result { grid-column: auto; padding: 1rem 0 0; border-top: 1px solid rgba(255,255,255,.18); border-left: 0; }
+      .project-result b { color: var(--white); }
+      .portrait-label { right: 1rem; bottom: -1.5rem; }
+      .deliverables { grid-template-columns: 1fr; }
+      .deliverable { min-height: auto; }
+      .deliverable:nth-child(even) { border-left: 0; }
+      .deliverable:nth-child(n+2) { border-top: 1px solid var(--line); }
+      .deliverable h3 { margin-top: 2.5rem; }
+      .timeline-item { grid-template-columns: 2.5rem 1fr; gap: 1rem; }
+      .timeline-item p { grid-column: 2; }
+      .detail-break { min-height: 680px; }
+      .detail-break img { object-position: 38% center; }
+      .contact-grid { gap: 3rem; }
+      .footer-grid { flex-direction: column; gap: .75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      [data-reveal] { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="header">
+    <nav class="nav" aria-label="Основная навигация">
+      <a class="brand" href="#top" aria-label="Идеальная детская — наверх">
+        <span class="brand-mark">ИД</span>
+        <span>Идеальная<br>детская</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#projects">Проекты</a>
+        <a href="#method">Метод</a>
+        <a href="#package">Что входит</a>
+        <a href="#questions">Вопросы</a>
+      </div>
+      <a class="nav-cta" href="#contact">Бесплатный разбор →</a>
+      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">Меню</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="top">
+      <img class="hero-image" src="images/generated/hero.webp" alt="Светлая детская с рабочим столом у окна, встроенным хранением и местом для чтения" width="1536" height="1024" fetchpriority="high">
+      <div class="hero-content">
+        <div class="hero-copy">
+          <h1>Детская, из которой ребёнок не хочет уходить</h1>
+          <p class="hero-lead">Спроектирую детскую до 15 м² за 3 недели: две консультации — с вами и ребёнком, планировка, визуальная концепция и список мебели. Стоимость полного проекта — 45 000 ₽.</p>
+          <div class="hero-actions">
+            <a class="button button--light" href="#contact">Записаться на бесплатный разбор</a>
+          </div>
+        </div>
+      </div>
+      <p class="hero-credit">Санкт-Петербург · онлайн по всей России</p>
+    </section>
+
+    <section class="section recognition" aria-labelledby="recognition-title">
+      <div class="wrap">
+        <div class="recognition-head" data-reveal>
+          <div>
+            <h2 id="recognition-title">Комната есть. А жить в ней неудобно.</h2>
+          </div>
+          <p>Хорошая детская начинается не с подборки мебели, а с понимания привычек, характера и возраста конкретного ребёнка.</p>
+        </div>
+        <div class="pains">
+          <article class="pain" data-reveal>
+            <span class="pain-number">01</span>
+            <h3>Он почти не бывает в своей комнате</h3>
+            <p>Уроки делает на кухне, играет в гостиной, а в детскую приходит только спать.</p>
+          </article>
+          <article class="pain" data-reveal>
+            <span class="pain-number">02</span>
+            <h3>Порядок держится только до вечера</h3>
+            <p>Хранение устроено по взрослой логике, поэтому вещи снова расползаются по квартире.</p>
+          </article>
+          <article class="pain" data-reveal>
+            <span class="pain-number">03</span>
+            <h3>Комната перестала соответствовать возрасту</h3>
+            <p>Ему уже девять, а пространство всё ещё придумано для трёхлетнего — и скоро снова потребует ремонта.</p>
+          </article>
+        </div>
+        <p class="recognition-bottom" data-reveal>Красивый интерьер не решит эти задачи сам по себе. Но точная планировка, построенная вокруг ребёнка, решит.</p>
+      </div>
+    </section>
+
+    <section class="section portfolio" id="projects" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="portfolio-intro" data-reveal>
+          <div>
+            <h2 id="projects-title">Не детская «вообще». Детская для него.</h2>
+          </div>
+          <p class="lead">У каждого проекта своя задача. Общий принцип один: ребёнок понимает, где учиться, где отдыхать, куда убрать вещи и где можно побыть одному.</p>
+        </div>
+
+        <article class="project project--junior">
+          <div class="project-image-wrap" data-reveal>
+            <img class="project-image" src="images/generated/project-junior.webp" alt="Компактная детская школьника с рабочим столом у окна и кроватью в мягкой нише" width="1402" height="1122" loading="lazy">
+          </div>
+          <div class="project-caption" data-reveal>
+            <span class="project-id">Проект 01</span>
+            <div>
+              <h3>Комната школьника · 11 м²</h3>
+              <span class="project-meta">Учёба · сон · самостоятельное хранение</span>
+            </div>
+            <p class="project-result"><b>Задача</b>Освободить центр комнаты и сделать все ежедневные вещи доступными без помощи взрослых.</p>
+          </div>
+        </article>
+
+        <article class="project project--shared">
+          <div class="project-image-wrap" data-reveal>
+            <img class="project-image" src="images/generated/project-shared.webp" alt="Спокойная детская для двух детей с отдельными кроватями и общим столом у окна" width="1536" height="1024" loading="lazy">
+          </div>
+          <div class="project-caption" data-reveal>
+            <span class="project-id">Проект 02</span>
+            <div>
+              <h3>Комната для двоих · 15 м²</h3>
+              <span class="project-meta">Личные зоны · общий стол · равные условия</span>
+            </div>
+            <p class="project-result"><b>Задача</b>Дать каждому своё место и сохранить достаточно воздуха для игр, не превращая комнату в зеркальную копию.</p>
+          </div>
+        </article>
+
+        <article class="project project--teen">
+          <div class="project-image-wrap" data-reveal>
+            <img class="project-image" src="images/generated/project-teen.webp" alt="Сдержанная подростковая комната с большим столом, местом для друзей и закрытым хранением" width="1536" height="1024" loading="lazy">
+          </div>
+          <div class="project-caption" data-reveal>
+            <span class="project-id">Проект 03</span>
+            <div>
+              <h3>Комната подростка · 13 м²</h3>
+              <span class="project-meta">Приватность · друзья · самовыражение</span>
+            </div>
+            <p class="project-result"><b>Задача</b>Сделать пространство взрослее без ремонта «на два года» и оставить место для меняющихся интересов.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section method" id="method" aria-labelledby="method-title">
+      <div class="wrap method-grid">
+        <div class="portrait-wrap" data-reveal>
+          <div class="portrait-frame">
+            <img class="portrait" src="images/designer.jpg" alt="Дизайнер интерьеров и детский психолог" width="1655" height="2000" loading="lazy">
+          </div>
+          <p class="portrait-label">Один специалист отвечает и за разговор, и за решения в пространстве. Ничего не теряется в пересказе.</p>
+        </div>
+        <div class="method-copy" data-reveal>
+          <h2 id="method-title">Сначала слушаю. Потом проектирую.</h2>
+          <p class="lead">Ребёнок редко говорит: «мне не подходит эта планировка». Он просто уходит делать уроки на кухню. Моя задача — услышать причину и перевести её на язык пространства.</p>
+          <div class="method-points">
+            <div class="method-point">
+              <span>01</span>
+              <div><h3>Встреча с ребёнком</h3><p>В игровой форме выясняем, где ему спокойно, что мешает сосредоточиться и как он хочет пользоваться комнатой.</p></div>
+            </div>
+            <div class="method-point">
+              <span>02</span>
+              <div><h3>Встреча с родителем</h3><p>Согласуем бюджет, ограничения и ожидания — без борьбы между «красиво» и «ребёнок хочет иначе».</p></div>
+            </div>
+            <div class="method-point">
+              <span>03</span>
+              <div><h3>Планировка и образ</h3><p>Каждый вывод превращается в конкретное решение: высоту хранения, положение стола, свет и зоны приватности.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section offer" id="package" aria-labelledby="package-title">
+      <div class="wrap">
+        <div class="offer-head" data-reveal>
+          <div>
+            <h2 id="package-title">Всё, чтобы перейти от идеи к покупкам</h2>
+          </div>
+          <p>Вы получите не набор красивых картинок, а понятный план комнаты и конкретные предметы, которые можно заказать.</p>
+        </div>
+        <div class="offer-grid">
+          <div class="deliverables" data-reveal>
+            <article class="deliverable">
+              <span class="deliverable-index">01 / 04</span>
+              <h3>Две консультации</h3>
+              <p>Отдельно с ребёнком и отдельно с вами. Онлайн или очно в Санкт-Петербурге.</p>
+            </article>
+            <article class="deliverable">
+              <span class="deliverable-index">02 / 04</span>
+              <h3>Планировка</h3>
+              <p>Расстановка мебели в масштабе: сон, учёба, игра, хранение и свободное место.</p>
+            </article>
+            <article class="deliverable">
+              <span class="deliverable-index">03 / 04</span>
+              <h3>Визуальная концепция</h3>
+              <p>Цвет, материалы, мебель и свет — чтобы увидеть характер комнаты до покупок.</p>
+            </article>
+            <article class="deliverable">
+              <span class="deliverable-index">04 / 04</span>
+              <h3>Список покупок</h3>
+              <p>Конкретные позиции со ссылками, размерами и ценами. Без комиссии от магазинов.</p>
+            </article>
+          </div>
+          <aside class="price-card" data-reveal>
+            <p class="price">45 000 ₽</p>
+            <p class="price-note">Комната до 15 м² · готовность за 3 недели</p>
+            <ul class="price-list">
+              <li>Одна правка включена</li>
+              <li>Все материалы в одном PDF</li>
+              <li>Мебель покупаете напрямую</li>
+              <li>Чертежи для ремонта — по запросу</li>
+            </ul>
+            <a class="button button--light" href="#contact">Обсудить мою комнату</a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section process" aria-labelledby="process-title">
+      <div class="wrap">
+        <div class="process-head" data-reveal>
+          <h2 id="process-title">Пять спокойных шагов. Три недели.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item" data-reveal><span class="timeline-index">01</span><h3>Бесплатный разбор</h3><p>Смотрим фото и план комнаты. Говорю, нужен ли полный проект или задачу решит перестановка.</p></article>
+          <article class="timeline-item" data-reveal><span class="timeline-index">02</span><h3>Две консультации</h3><p>Сначала встречаюсь с ребёнком, затем отдельно обсуждаю с вами выводы, бюджет и ограничения.</p></article>
+          <article class="timeline-item" data-reveal><span class="timeline-index">03</span><h3>Планировка</h3><p>Показываю расстановку мебели и зонирование. Согласовываем основу до работы над стилем.</p></article>
+          <article class="timeline-item" data-reveal><span class="timeline-index">04</span><h3>Образ комнаты</h3><p>Подбираю цвета, материалы, свет и мебель, которые поддерживают согласованный сценарий жизни.</p></article>
+          <article class="timeline-item" data-reveal><span class="timeline-index">05</span><h3>Готовый проект</h3><p>Вносится одна правка. Получаете PDF с планом, визуальной концепцией и списком покупок.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="detail-break" aria-label="Интерьерная деталь">
+      <img src="images/generated/detail-v2.webp" alt="Вечерний уголок для чтения с мягким местом у окна и встроенным хранением" width="1536" height="1024" loading="lazy">
+      <div class="detail-copy" data-reveal>
+        <p>Комната становится своей, когда ребёнок узнаёт в ней себя.</p>
+      </div>
+    </section>
+
+    <section class="section faq" id="questions" aria-labelledby="faq-title">
+      <div class="wrap faq-grid">
+        <div class="faq-copy" data-reveal>
+          <h2 id="faq-title">Вопросы перед стартом</h2>
+          <p>Если вашей ситуации здесь нет, расскажите о ней на бесплатном разборе.</p>
+        </div>
+        <div data-reveal>
+          <details><summary>Вы работаете только в Петербурге?</summary><p>Очно — в Санкт-Петербурге. Онлайн работаю по всей России: консультации проходят в видеозвонке, замеры вы делаете по моей инструкции, проект приходит файлом.</p></details>
+          <details><summary>А если ребёнок не захочет разговаривать?</summary><p>Это нормально. Встреча строится не как формальное интервью, а через игру, рисунок и наблюдение. Формат подстраивается под возраст и характер ребёнка.</p></details>
+          <details><summary>Обязательно ли делать ремонт?</summary><p>Нет. Можно работать с существующей отделкой — за счёт новой расстановки, хранения, света, текстиля и предметов, которые переедут вместе с вами.</p></details>
+          <details><summary>Что если в комнате живут двое детей?</summary><p>Такие комнаты тоже проектирую. Понадобятся дополнительные встречи, чтобы услышать обоих детей, поэтому объём и стоимость обсуждаются отдельно.</p></details>
+          <details><summary>Что значит «визуальная концепция»?</summary><p>Это коллаж и подбор материалов, мебели, света и цвета. Реалистичные 3D-визуализации и полный комплект ремонтных чертежей можно заказать дополнительно.</p></details>
+          <details><summary>Можно ли работать со съёмной квартирой?</summary><p>Да. В таком случае подбираю решения без сложного монтажа и предметы, которые можно забрать при переезде.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap contact-grid">
+        <div data-reveal>
+          <h2 id="contact-title">Разберём комнату за 20 минут</h2>
+          <p class="lead">Пришлите фотографии и примерный план. Я назову главные ошибки, подскажу, что можно изменить сразу, и честно скажу, нужен ли вам полный проект.</p>
+          <ul class="contact-list">
+            <li>Без продажи проекта на встрече</li>
+            <li>Онлайн по всей России</li>
+            <li>Очно в Санкт-Петербурге</li>
+          </ul>
+        </div>
+        <form class="contact-form" id="contactForm" data-reveal>
+          <h3>Записаться на разбор</h3>
+          <div class="field">
+            <label for="name">Как вас зовут</label>
+            <input id="name" name="name" type="text" autocomplete="name" placeholder="Ваше имя">
+          </div>
+          <div class="field">
+            <label for="contactField">Телефон или Telegram</label>
+            <input id="contactField" name="contact" type="text" autocomplete="tel" placeholder="Как с вами связаться">
+          </div>
+          <button class="button" type="submit">Записаться</button>
+          <p class="form-message" id="formMessage" role="status"></p>
+          <p class="privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. В макете форма не передаёт данные.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <span>© 2026 · Идеальная детская</span>
+      <span class="preview-note">Макет для согласования. Интерьерные изображения временные и заменяются фотографиями проектов перед запуском.</span>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    const menuButton = document.getElementById('menuButton');
+    const navLinks = document.getElementById('navLinks');
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+
+    const syncHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
+    syncHeader();
+    window.addEventListener('scroll', syncHeader, { passive: true });
+
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      document.body.classList.toggle('menu-open', open);
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.textContent = open ? 'Закрыть' : 'Меню';
+      header.classList.toggle('scrolled', open || window.scrollY > 24);
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = 'Меню';
+    }));
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      formMessage.textContent = 'Это макет: подключим отправку после согласования способа связи.';
+    });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12 });
+      document.querySelectorAll('[data-reveal]').forEach(node => observer.observe(node));
+    } else {
+      document.querySelectorAll('[data-reveal]').forEach(node => node.classList.add('visible'));
+    }
+  </script>
+</body>
+</html>
