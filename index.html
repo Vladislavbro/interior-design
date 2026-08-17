@@ -250,12 +250,14 @@
     .portfolio-intro .lead { margin-bottom: 0; color: rgba(255, 255, 255, .66); }
     .project { margin-top: clamp(5rem, 9vw, 9rem); }
     .project:first-of-type { margin-top: 0; }
-    .project-image-wrap { position: relative; overflow: hidden; background: #1d241c; }
-    .project-image { height: min(76vh, 920px); object-fit: cover; transition: transform .8s cubic-bezier(.2,.7,.2,1); }
-    .project:hover .project-image { transform: scale(1.015); }
-    .project--junior .project-image { object-position: center; }
-    .project--shared .project-image { object-position: center 48%; }
-    .project--teen .project-image { object-position: center; }
+    .project-image-wrap {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      overflow: hidden;
+      background: #1d241c;
+    }
+    .project-image { height: auto; object-fit: initial; }
     .project-caption {
       position: relative;
       width: calc(100% - 5rem);
@@ -494,7 +496,6 @@
       .recognition-bottom { margin-top: 3rem; }
       .portfolio-intro { margin-bottom: 3rem; }
       .project { margin-top: 5rem; }
-      .project-image { height: 64vh; min-height: 520px; }
       .project-caption { width: 100%; margin: 0; padding: 1.8rem 0; grid-template-columns: 1fr; gap: .8rem; background: transparent; color: var(--white); box-shadow: none; border-bottom: 1px solid rgba(255,255,255,.2); }
       .project-meta, .project-caption p { color: rgba(255,255,255,.64); }
       .project-result { grid-column: auto; padding: 1rem 0 0; border-top: 1px solid rgba(255,255,255,.18); border-left: 0; }
@@ -550,7 +551,7 @@
           </div>
         </div>
       </div>
-      <p class="hero-credit">Санкт-Петербург · онлайн по всей России</p>
+      <p class="hero-credit">Санкт-Петербург. Онлайн по всей России</p>
     </section>
 
     <section class="section recognition" aria-labelledby="recognition-title">
@@ -593,13 +594,13 @@
 
         <article class="project project--junior">
           <div class="project-image-wrap" data-reveal>
-            <img class="project-image" src="images/generated/project-junior.webp" alt="Компактная детская школьника с рабочим столом у окна и кроватью в мягкой нише" width="1402" height="1122" loading="lazy">
+            <img class="project-image" src="images/generated/project-junior-source.png" alt="Компактная детская школьника с рабочим столом у окна и кроватью в мягкой нише" width="1402" height="1122" loading="lazy">
           </div>
           <div class="project-caption" data-reveal>
             <span class="project-id">Проект 01</span>
             <div>
-              <h3>Комната школьника · 11 м²</h3>
-              <span class="project-meta">Учёба · сон · самостоятельное хранение</span>
+              <h3>Комната школьника, 11 м²</h3>
+              <span class="project-meta">Для учёбы, сна и самостоятельного хранения</span>
             </div>
             <p class="project-result"><b>Задача</b>Освободить центр комнаты и сделать все ежедневные вещи доступными без помощи взрослых.</p>
           </div>
@@ -607,13 +608,13 @@
 
         <article class="project project--shared">
           <div class="project-image-wrap" data-reveal>
-            <img class="project-image" src="images/generated/project-shared.webp" alt="Спокойная детская для двух детей с отдельными кроватями и общим столом у окна" width="1536" height="1024" loading="lazy">
+            <img class="project-image" src="images/generated/project-shared-source.png" alt="Спокойная детская для двух детей с отдельными кроватями и общим столом у окна" width="1536" height="1024" loading="lazy">
           </div>
           <div class="project-caption" data-reveal>
             <span class="project-id">Проект 02</span>
             <div>
-              <h3>Комната для двоих · 15 м²</h3>
-              <span class="project-meta">Личные зоны · общий стол · равные условия</span>
+              <h3>Комната для двоих, 15 м²</h3>
+              <span class="project-meta">Личные зоны, общий стол и равные условия</span>
             </div>
             <p class="project-result"><b>Задача</b>Дать каждому своё место и сохранить достаточно воздуха для игр, не превращая комнату в зеркальную копию.</p>
           </div>
@@ -621,13 +622,13 @@
 
         <article class="project project--teen">
           <div class="project-image-wrap" data-reveal>
-            <img class="project-image" src="images/generated/project-teen.webp" alt="Сдержанная подростковая комната с большим столом, местом для друзей и закрытым хранением" width="1536" height="1024" loading="lazy">
+            <img class="project-image" src="images/generated/project-teen-source.png" alt="Сдержанная подростковая комната с большим столом, местом для друзей и закрытым хранением" width="1536" height="1024" loading="lazy">
           </div>
           <div class="project-caption" data-reveal>
             <span class="project-id">Проект 03</span>
             <div>
-              <h3>Комната подростка · 13 м²</h3>
-              <span class="project-meta">Приватность · друзья · самовыражение</span>
+              <h3>Комната подростка, 13 м²</h3>
+              <span class="project-meta">Для приватности, общения с друзьями и самовыражения</span>
             </div>
             <p class="project-result"><b>Задача</b>Сделать пространство взрослее без ремонта «на два года» и оставить место для меняющихся интересов.</p>
           </div>
@@ -697,7 +698,7 @@
           </div>
           <aside class="price-card" data-reveal>
             <p class="price">45 000 ₽</p>
-            <p class="price-note">Комната до 15 м² · готовность за 3 недели</p>
+            <p class="price-note">Комната до 15 м², готовность за 3 недели</p>
             <ul class="price-list">
               <li>Одна правка включена</li>
               <li>Все материалы в одном PDF</li>
@@ -780,7 +781,7 @@
 
   <footer>
     <div class="wrap footer-grid">
-      <span>© 2026 · Идеальная детская</span>
+      <span>© 2026 — Идеальная детская</span>
       <span class="preview-note">Макет для согласования. Интерьерные изображения временные и заменяются фотографиями проектов перед запуском.</span>
     </div>
   </footer>
