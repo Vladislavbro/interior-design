@@ -239,6 +239,7 @@
     }
 
     .portfolio { background: var(--olive-deep); color: var(--white); }
+    .section.portfolio { padding-bottom: 0; }
     .portfolio-intro {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(300px, .55fr);
@@ -252,13 +253,19 @@
       width: 100vw;
       height: calc(100vh - 78px);
       height: calc(100svh - 78px);
-      margin-top: clamp(5rem, 9vw, 9rem);
+      margin-top: 0;
       margin-left: calc(50% - 50vw);
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(320px, 1fr);
       background: #1d241c;
     }
     .project:first-of-type { margin-top: 0; }
+    .project + .project { margin-top: 0; }
+    .project--shared {
+      grid-template-columns: minmax(320px, 1fr) minmax(0, 3fr);
+    }
+    .project--shared .project-image-wrap { grid-column: 2; grid-row: 1; }
+    .project--shared .project-caption { grid-column: 1; grid-row: 1; }
     .project-image-wrap {
       position: relative;
       min-width: 0;
@@ -268,7 +275,7 @@
     }
     .project-image {
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
       object-position: center;
     }
     .project-caption {
@@ -478,9 +485,11 @@
       }
       .nav-links.open a { font-family: "Prata", serif; font-size: 2rem; }
       .recognition-head, .portfolio-intro, .offer-head { grid-template-columns: 1fr; gap: 1.5rem; }
-      .project { height: auto; grid-template-columns: 1fr; }
-      .project-image-wrap { height: auto; }
-      .project-image { height: auto; object-fit: initial; }
+      .project, .project--shared { height: auto; grid-template-columns: 1fr; }
+      .project--shared .project-image-wrap,
+      .project--shared .project-caption { grid-column: 1; grid-row: auto; }
+      .project-image-wrap { height: auto; aspect-ratio: 3 / 2; }
+      .project-image { height: 100%; object-fit: cover; }
       .project-caption { width: 100%; }
       .method-grid, .offer-grid, .faq-grid, .contact-grid { grid-template-columns: 1fr; }
       .portrait-wrap { max-width: 650px; }
@@ -509,8 +518,8 @@
       .pain h3 { margin: 2rem 0 .8rem; }
       .recognition-bottom { margin-top: 3rem; }
       .portfolio-intro { margin-bottom: 3rem; }
-      .project { margin-top: 5rem; }
-      .project-caption { width: 100%; margin: 0; padding: 1.8rem 0; grid-template-columns: 1fr; gap: .8rem; background: transparent; color: var(--white); box-shadow: none; border-bottom: 1px solid rgba(255,255,255,.2); }
+      .project + .project { margin-top: 0; }
+      .project-caption { width: 100%; margin: 0; padding: 1.8rem 16px; grid-template-columns: 1fr; gap: .8rem; background: transparent; color: var(--white); box-shadow: none; border-bottom: 1px solid rgba(255,255,255,.2); }
       .project-meta, .project-caption p { color: rgba(255,255,255,.64); }
       .project-result { grid-column: auto; padding: 1rem 0 0; border-top: 1px solid rgba(255,255,255,.18); border-left: 0; }
       .project-result b { color: var(--white); }
@@ -572,28 +581,28 @@
       <div class="wrap">
         <div class="recognition-head" data-reveal>
           <div>
-            <h2 id="recognition-title">Комната есть. А жить в ней неудобно.</h2>
+            <h2 id="recognition-title">Комната, в которой ребёнку удобно расти</h2>
           </div>
-          <p>Хорошая детская начинается не с подборки мебели, а с понимания привычек, характера и возраста конкретного ребёнка.</p>
+          <p>Проект строится вокруг привычек, характера и возраста ребёнка — поэтому пространство работает каждый день, а не только красиво выглядит на визуализации.</p>
         </div>
         <div class="pains">
           <article class="pain" data-reveal>
             <span class="pain-number">01</span>
-            <h3>Он почти не бывает в своей комнате</h3>
-            <p>Уроки делает на кухне, играет в гостиной, а в детскую приходит только спать.</p>
+            <h3>Хочется быть в своей комнате</h3>
+            <p>Здесь есть понятное место для учёбы, отдыха, игр и времени наедине с собой.</p>
           </article>
           <article class="pain" data-reveal>
             <span class="pain-number">02</span>
-            <h3>Порядок держится только до вечера</h3>
-            <p>Хранение устроено по взрослой логике, поэтому вещи снова расползаются по квартире.</p>
+            <h3>Порядок становится проще</h3>
+            <p>Ребёнок сам достаёт и убирает вещи, потому что хранение устроено под его рост и привычки.</p>
           </article>
           <article class="pain" data-reveal>
             <span class="pain-number">03</span>
-            <h3>Комната перестала соответствовать возрасту</h3>
-            <p>Ему уже девять, а пространство всё ещё придумано для трёхлетнего — и скоро снова потребует ремонта.</p>
+            <h3>Комната меняется вместе с ним</h3>
+            <p>Планировка и мебель рассчитаны на несколько лет и адаптируются без нового ремонта.</p>
           </article>
         </div>
-        <p class="recognition-bottom" data-reveal>Красивый интерьер не решит эти задачи сам по себе. Но точная планировка, построенная вокруг ребёнка, решит.</p>
+        <p class="recognition-bottom" data-reveal>Красота здесь — не декорация. Она поддерживает самостоятельность, спокойствие и ощущение: «это моё место».</p>
       </div>
     </section>
 
