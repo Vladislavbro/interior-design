@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Дизайн детской с участием детского психолога: консультации, планировка, визуальная концепция и список мебели в одном проекте.">
-  <meta name="theme-color" content="#263126">
+  <meta name="theme-color" content="#53666b">
   <title>Идеальная детская — дизайн, который начинается с ребёнка</title>
   <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
@@ -25,9 +25,9 @@
       --paper-3: #e1d7c8;
       --ink: #292822;
       --muted: #706c63;
-      --olive: #526148;
-      --olive-deep: #263126;
-      --olive-soft: #dce1d6;
+      --accent: #5e7478;
+      --accent-deep: #53666b;
+      --accent-soft: #dce4e3;
       --clay: #a85f49;
       --rose: #9a6d70;
       --line: rgba(41, 40, 34, .16);
@@ -63,7 +63,7 @@
     h1 { font-size: clamp(3.2rem, 6.4vw, 6.7rem); margin-bottom: 1.5rem; }
     h2 { font-size: clamp(2.5rem, 4.8vw, 5.2rem); margin-bottom: 1.5rem; }
     h3 { font-size: clamp(1.45rem, 2.2vw, 2.25rem); }
-    ::selection { background: var(--olive); color: var(--white); }
+    ::selection { background: var(--accent); color: var(--white); }
     :focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
 
     .wrap { width: var(--wrap); margin-inline: auto; }
@@ -81,9 +81,9 @@
       justify-content: center;
       gap: .8rem;
       padding: .95rem 1.55rem;
-      border: 1px solid var(--olive);
+      border: 1px solid var(--accent);
       border-radius: var(--radius);
-      background: var(--olive);
+      background: var(--accent);
       color: var(--white);
       font-size: .96rem;
       font-weight: 600;
@@ -93,8 +93,8 @@
       transition: background .25s ease, color .25s ease, transform .25s ease;
     }
     .button::after { content: "→"; font-size: 1.15rem; }
-    .button:hover { background: var(--olive-deep); transform: translateY(-2px); }
-    .button--light { border-color: var(--white); background: var(--white); color: var(--olive-deep); }
+    .button:hover { background: var(--accent-deep); transform: translateY(-2px); }
+    .button--light { border-color: var(--white); background: var(--white); color: var(--accent-deep); }
     .button--light:hover { background: var(--paper-2); }
 
     .site-header {
@@ -165,7 +165,7 @@
       align-items: flex-end;
       isolation: isolate;
       overflow: hidden;
-      background: var(--olive-deep);
+      background: var(--accent-deep);
       color: var(--white);
     }
     .hero::after {
@@ -173,7 +173,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(19, 25, 19, .86) 0%, rgba(19, 25, 19, .58) 37%, rgba(19, 25, 19, .05) 72%), linear-gradient(0deg, rgba(19, 25, 19, .5), transparent 45%);
+      background: linear-gradient(90deg, rgba(36, 48, 51, .86) 0%, rgba(36, 48, 51, .58) 37%, rgba(36, 48, 51, .05) 72%), linear-gradient(0deg, rgba(36, 48, 51, .5), transparent 45%);
     }
     .hero-image {
       position: absolute;
@@ -238,7 +238,7 @@
       line-height: 1.35;
     }
 
-    .portfolio { background: var(--olive-deep); color: var(--white); }
+    .portfolio { background: var(--accent-deep); color: var(--white); }
     .section.portfolio { padding-bottom: 0; }
     .portfolio-intro {
       display: grid;
@@ -257,7 +257,7 @@
       margin-left: calc(50% - 50vw);
       display: grid;
       grid-template-columns: minmax(0, 3fr) minmax(320px, 1fr);
-      background: #1d241c;
+      background: #46585c;
     }
     .project:first-of-type { margin-top: 0; }
     .project + .project { margin-top: 0; }
@@ -271,7 +271,7 @@
       min-width: 0;
       height: 100%;
       overflow: hidden;
-      background: #1d241c;
+      background: #46585c;
     }
     .project-image {
       height: 100%;
@@ -322,7 +322,7 @@
       bottom: -1.5rem;
       max-width: 240px;
       padding: 1.25rem;
-      background: var(--olive-deep);
+      background: var(--accent-deep);
       color: var(--white);
       font-size: .78rem;
       line-height: 1.5;
@@ -371,7 +371,7 @@
       position: sticky;
       top: 110px;
       padding: clamp(2rem, 4vw, 3.5rem);
-      background: var(--olive-deep);
+      background: var(--accent-deep);
       color: var(--white);
       box-shadow: var(--shadow);
     }
@@ -403,10 +403,10 @@
       display: flex;
       align-items: flex-end;
       overflow: hidden;
-      background: #211e18;
+      background: #35464a;
       color: var(--white);
     }
-    .detail-break::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(21,25,19,.78), rgba(21,25,19,0) 65%); }
+    .detail-break::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(39,52,55,.78), rgba(39,52,55,0) 65%); }
     .detail-break img { position: absolute; inset: 0; height: 100%; object-fit: cover; object-position: center; }
     .detail-copy { position: relative; z-index: 1; width: var(--wrap); margin: 0 auto; padding: 4rem 0; }
     .detail-copy p { max-width: 720px; margin-bottom: 0; font-family: "Prata", serif; font-size: clamp(2rem, 4vw, 4.6rem); line-height: 1.15; }
@@ -429,7 +429,7 @@
     details[open] summary::after { content: "−"; }
     details p { max-width: 780px; padding: 0 2.5rem 1.6rem 0; margin: 0; color: var(--muted); }
 
-    .contact { position: relative; overflow: hidden; background: var(--olive-deep); color: var(--white); }
+    .contact { position: relative; overflow: hidden; background: var(--accent-deep); color: var(--white); }
     .contact::before {
       content: "";
       position: absolute;
