@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 import os
 import re
 import sys
@@ -41,6 +39,16 @@ def valid_contact(value: str) -> bool:
     return bool(re.fullmatch(r"(?:[78]\d{10}|\d{10})", digits))
 
 
+def send_lead(name: str, contact: str) -> None:
+    telegram(
+        "sendMessage",
+        {
+            "chat_id": CHAT_ID,
+            "text": f"Новая заявка с сайта\n\nИмя: {name}\nТелефон или Telegram: {contact}",
+        },
+    )
+
+
 @app.post("/api/lead")
 def lead(data: Lead) -> dict[str, bool]:
     name = data.name.strip()
@@ -51,13 +59,7 @@ def lead(data: Lead) -> dict[str, bool]:
     if not valid_contact(contact):
         raise HTTPException(400, "Введите телефон или Telegram.")
 
-    telegram(
-        "sendMessage",
-        {
-            "chat_id": CHAT_ID,
-            "text": f"Новая заявка с сайта\n\nИмя: {name}\nТелефон или Telegram: {contact}",
-        },
-    )
+    send_lead(name, contact)
     return {"ok": True}
 
 
