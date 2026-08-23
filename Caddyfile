@@ -1,0 +1,14 @@
+# Прод: замените на свой домен, TLS Caddy выпустит сам.
+# Локально: caddy run — и откройте http://localhost:8080
+:8080 {
+	handle /api/* {
+		reverse_proxy 127.0.0.1:8001
+	}
+
+	handle {
+		root * .
+		file_server {
+			hide .env .git pyproject.toml uv.lock server.py Caddyfile *.md
+		}
+	}
+}

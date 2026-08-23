@@ -148,7 +148,28 @@
     }
     .nav-links a:hover { opacity: .62; }
     .mobile-menu-footer { display: none; }
-    .nav-cta { justify-self: end; font-size: .82rem; font-weight: 600; text-decoration: none; }
+    .nav-cta {
+      min-height: 44px;
+      justify-self: end;
+      padding: .65rem 1rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(83, 102, 107, .22);
+      background: var(--white);
+      box-shadow: 0 8px 24px rgba(19, 25, 19, .12);
+      color: var(--accent-deep);
+      font-size: .82rem;
+      font-weight: 600;
+      line-height: 1.2;
+      text-decoration: none;
+      transition: background .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+    .nav-cta:hover {
+      background: var(--paper-2);
+      box-shadow: 0 10px 28px rgba(19, 25, 19, .17);
+      transform: translateY(-1px);
+    }
     .menu-button {
       display: none;
       justify-self: end;
@@ -458,13 +479,20 @@
       color: var(--ink);
     }
     .field input::placeholder { color: #aaa398; }
+    .field input[aria-invalid="true"] { border-color: var(--clay); }
     .contact-form .button { width: 100%; margin-top: 2rem; border: 0; cursor: pointer; }
     .form-message { min-height: 1.5em; margin: .8rem 0 0; color: var(--rose); font-size: .78rem; }
     .privacy { margin: .75rem 0 0; color: var(--muted); font-size: .7rem; line-height: 1.45; }
 
     footer { padding: 2.2rem 0; background: var(--accent-deep); color: rgba(255,255,255,.62); font-size: .73rem; }
-    .footer-grid { display: flex; justify-content: space-between; gap: 2rem; }
+    .footer-grid { display: flex; align-items: center; gap: 2rem; }
+    .contact-links { display: flex; align-items: center; gap: .8rem; white-space: nowrap; }
+    .contact-links a { text-decoration: none; transition: opacity .2s ease; }
+    .contact-links a:hover { opacity: .62; }
+    .contact-links a + a { padding-left: .8rem; border-left: 1px solid currentColor; }
+    .footer-contacts { color: rgba(255,255,255,.82); }
     .preview-note { color: rgba(255,255,255,.4); }
+    .footer-grid .preview-note { margin-left: auto; text-align: right; }
 
     [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
     [data-reveal].visible { opacity: 1; transform: none; }
@@ -529,8 +557,10 @@
       }
       .mobile-menu-cta {
         width: 100%;
+        grid-column: 1 / -1;
         font-weight: 600;
       }
+      .mobile-menu-contacts { color: var(--ink); font-size: .78rem; }
       .mobile-menu-note {
         margin: 0;
         color: var(--muted);
@@ -591,6 +621,8 @@
       .detail-break img { object-position: 38% center; }
       .contact-grid { gap: 3rem; }
       .footer-grid { flex-direction: column; gap: .75rem; }
+      .footer-grid { align-items: flex-start; }
+      .footer-grid .preview-note { margin-left: 0; text-align: left; }
     }
 
     @media (max-width: 720px) and (max-height: 700px) {
@@ -635,6 +667,10 @@
         </div>
         <div class="mobile-menu-footer">
           <a class="button mobile-menu-cta" href="#contact">Записаться на бесплатный разбор</a>
+          <div class="contact-links mobile-menu-contacts" aria-label="Контакты">
+            <a href="tel:+79006487238">+7 900 648-72-38</a>
+            <a href="https://t.me/sadalskayas">@sadalskayas</a>
+          </div>
           <p class="mobile-menu-note">Санкт-Петербург<br>Онлайн по всей России</p>
         </div>
       </div>
@@ -866,11 +902,11 @@
           <h3>Записаться на разбор</h3>
           <div class="field">
             <label for="name">Имя</label>
-            <input id="name" name="name" type="text" autocomplete="name">
+            <input id="name" name="name" type="text" autocomplete="name" required>
           </div>
           <div class="field">
             <label for="contactField">Телефон или Telegram</label>
-            <input id="contactField" name="contact" type="text" autocomplete="tel">
+            <input id="contactField" name="contact" type="text" autocomplete="tel" required aria-describedby="formMessage">
           </div>
           <button class="button" type="submit">Записаться</button>
           <p class="form-message" id="formMessage" role="status"></p>
@@ -883,6 +919,10 @@
   <footer>
     <div class="wrap footer-grid">
       <span>© 2026 — Идеальная детская</span>
+      <div class="contact-links footer-contacts" aria-label="Контакты">
+        <a href="tel:+79006487238">+7 900 648-72-38</a>
+        <a href="https://t.me/sadalskayas">@sadalskayas</a>
+      </div>
       <span class="preview-note">Макет для согласования. Интерьерные изображения временные и заменяются фотографиями проектов перед запуском.</span>
     </div>
   </footer>
@@ -893,6 +933,7 @@
     const navLinks = document.getElementById('navLinks');
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
+    const contactField = document.getElementById('contactField');
 
     const syncHeader = () => header.classList.toggle('scrolled', navLinks.classList.contains('open') || window.scrollY > 24);
     const closeMenu = () => {
@@ -927,9 +968,57 @@
       if (event.matches) closeMenu();
     });
 
-    form.addEventListener('submit', event => {
+    const validContact = value => {
+      const telegram = /^(?:@|(?:https?:\/\/)?t\.me\/)[a-z][a-z0-9_]{4,31}\/?$/i;
+      if (telegram.test(value)) return true;
+
+      const phoneCharacters = /^[+\d\s()\-]+$/;
+      const digits = value.replace(/\D/g, '');
+      return phoneCharacters.test(value) && /^(?:[78]\d{10}|\d{10})$/.test(digits);
+    };
+
+    contactField.addEventListener('input', () => {
+      contactField.removeAttribute('aria-invalid');
+      formMessage.textContent = '';
+    });
+
+    form.addEventListener('submit', async event => {
       event.preventDefault();
-      formMessage.textContent = 'Это макет: подключим отправку после согласования способа связи.';
+      const submitButton = form.querySelector('button[type="submit"]');
+      const name = document.getElementById('name').value.trim();
+      const contact = contactField.value.trim();
+
+      if (!name || !contact) {
+        formMessage.textContent = 'Заполните оба поля.';
+        return;
+      }
+      if (!validContact(contact)) {
+        contactField.setAttribute('aria-invalid', 'true');
+        formMessage.textContent = 'Введите телефон или Telegram: +7 900 000-00-00 или @username.';
+        contactField.focus();
+        return;
+      }
+
+      submitButton.disabled = true;
+      formMessage.textContent = 'Отправляем…';
+
+      try {
+        const response = await fetch('/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, contact })
+        });
+        const result = await response.json().catch(() => ({}));
+        // Понятный текст ошибки сервер шлёт строкой в detail; всё остальное — общая формулировка.
+        if (!response.ok || !result.ok) throw new Error(typeof result.detail === 'string' ? result.detail : '');
+
+        form.reset();
+        formMessage.textContent = 'Спасибо! Заявка отправлена.';
+      } catch (error) {
+        formMessage.textContent = error.message || 'Не удалось отправить. Попробуйте ещё раз или напишите в Telegram.';
+      } finally {
+        submitButton.disabled = false;
+      }
     });
 
     if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
