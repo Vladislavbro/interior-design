@@ -64,7 +64,7 @@
     h2 { font-size: clamp(2.5rem, 4.8vw, 5.2rem); margin-bottom: 1.5rem; }
     h3 { font-size: clamp(1.45rem, 2.2vw, 2.25rem); }
     ::selection { background: var(--accent); color: var(--white); }
-    :focus-visible { outline: 2px solid var(--clay); outline-offset: 4px; }
+    :focus, :focus-visible { outline: none; box-shadow: none; }
 
     .wrap { width: var(--wrap); margin-inline: auto; }
     .section { padding: clamp(6rem, 10vw, 10rem) 0; }
@@ -156,6 +156,7 @@
       align-items: center;
       justify-content: center;
       border: 1px solid rgba(83, 102, 107, .22);
+      border-radius: var(--radius);
       background: var(--white);
       box-shadow: 0 8px 24px rgba(19, 25, 19, .12);
       color: var(--accent-deep);

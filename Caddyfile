@@ -6,9 +6,7 @@
 	}
 
 	handle {
-		root * .
-		file_server {
-			hide .env .git pyproject.toml uv.lock server.py Caddyfile *.md
-		}
+		root * public
+		file_server
 	}
 }
