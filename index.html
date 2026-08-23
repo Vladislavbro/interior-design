@@ -139,13 +139,15 @@
       font-size: .63rem;
       letter-spacing: .05em;
     }
-    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links,
+    .nav-links-list { display: flex; align-items: center; gap: 2rem; }
     .nav-links a {
       font-size: .82rem;
       text-decoration: none;
       transition: opacity .2s ease;
     }
     .nav-links a:hover { opacity: .62; }
+    .mobile-menu-footer { display: none; }
     .nav-cta { justify-self: end; font-size: .82rem; font-weight: 600; text-decoration: none; }
     .menu-button {
       display: none;
@@ -173,7 +175,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(90deg, rgba(36, 48, 51, .86) 0%, rgba(36, 48, 51, .58) 37%, rgba(36, 48, 51, .05) 72%), linear-gradient(0deg, rgba(36, 48, 51, .5), transparent 45%);
+      background: linear-gradient(90deg, rgba(19, 25, 19, .86) 0%, rgba(19, 25, 19, .58) 37%, rgba(19, 25, 19, .05) 72%), linear-gradient(0deg, rgba(19, 25, 19, .5), transparent 45%);
     }
     .hero-image {
       position: absolute;
@@ -460,7 +462,7 @@
     .form-message { min-height: 1.5em; margin: .8rem 0 0; color: var(--rose); font-size: .78rem; }
     .privacy { margin: .75rem 0 0; color: var(--muted); font-size: .7rem; line-height: 1.45; }
 
-    footer { padding: 2.2rem 0; background: #171d17; color: rgba(255,255,255,.55); font-size: .73rem; }
+    footer { padding: 2.2rem 0; background: var(--accent-deep); color: rgba(255,255,255,.62); font-size: .73rem; }
     .footer-grid { display: flex; justify-content: space-between; gap: 2rem; }
     .preview-note { color: rgba(255,255,255,.4); }
 
@@ -471,18 +473,71 @@
       :root { --wrap: min(100% - 40px, 1380px); }
       .nav { grid-template-columns: 1fr auto; }
       .nav-links, .nav-cta { display: none; }
-      .menu-button { display: block; }
+      .menu-button {
+        min-height: 44px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+      }
+      body.menu-open .site-header { backdrop-filter: none; }
       .nav-links.open {
         position: fixed;
         inset: 78px 0 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 3rem 20px;
+        display: grid;
+        grid-template-rows: auto auto;
+        align-content: start;
+        gap: clamp(2rem, 6vh, 4rem);
+        padding: clamp(2.25rem, 7vh, 4.5rem) max(20px, calc((100vw - 960px) / 2)) 2rem;
+        overflow-y: auto;
+        overscroll-behavior: contain;
         background: var(--paper);
         color: var(--ink);
       }
-      .nav-links.open a { font-family: "Prata", serif; font-size: 2rem; }
+      .nav-links-list {
+        display: grid;
+        align-content: start;
+        gap: 0;
+      }
+      .nav-links.open .nav-links-list a {
+        position: relative;
+        padding: clamp(.8rem, 2.2vh, 1.35rem) 3rem clamp(.8rem, 2.2vh, 1.35rem) 0;
+        border-bottom: 1px solid var(--line);
+        font-family: "Prata", serif;
+        font-size: clamp(1.8rem, 6vw, 3rem);
+        line-height: 1.15;
+      }
+      .nav-links.open .nav-links-list a:first-child { border-top: 1px solid var(--line); }
+      .nav-links.open .nav-links-list a::after {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        color: var(--muted);
+        font-family: "Golos", sans-serif;
+        font-size: .7rem;
+        letter-spacing: .08em;
+        transform: translateY(-50%);
+      }
+      .nav-links.open .nav-links-list a:nth-child(1)::after { content: "01"; }
+      .nav-links.open .nav-links-list a:nth-child(2)::after { content: "02"; }
+      .nav-links.open .nav-links-list a:nth-child(3)::after { content: "03"; }
+      .nav-links.open .nav-links-list a:nth-child(4)::after { content: "04"; }
+      .mobile-menu-footer {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1rem 2rem;
+        align-items: end;
+      }
+      .mobile-menu-cta {
+        width: 100%;
+        font-weight: 600;
+      }
+      .mobile-menu-note {
+        margin: 0;
+        color: var(--muted);
+        font-size: .74rem;
+        line-height: 1.45;
+        text-align: right;
+      }
       .recognition-head, .portfolio-intro, .offer-head { grid-template-columns: 1fr; gap: 1.5rem; }
       .project, .project--shared { height: auto; grid-template-columns: 1fr; }
       .project--shared .project-image-wrap,
@@ -502,6 +557,8 @@
       .section { padding: 5.5rem 0; }
       .nav { min-height: 68px; }
       .nav-links.open { inset: 68px 0 0; }
+      .mobile-menu-footer { grid-template-columns: 1fr; align-items: start; }
+      .mobile-menu-note { text-align: left; }
       .hero { min-height: calc(100svh - 3rem); }
       .hero::after { background: linear-gradient(0deg, rgba(19,25,19,.92) 0%, rgba(19,25,19,.58) 60%, rgba(19,25,19,.12) 100%); }
       .hero-image { object-position: 56% center; }
@@ -537,6 +594,10 @@
     }
 
     @media (max-width: 720px) and (max-height: 700px) {
+      .nav-links.open { gap: 1.5rem; padding-top: 1.5rem; padding-bottom: 1.25rem; }
+      .nav-links.open .nav-links-list a { padding-block: .6rem; font-size: 1.65rem; }
+      .mobile-menu-footer { gap: .55rem; }
+      .mobile-menu-note { font-size: .68rem; }
       .hero { min-height: calc(100svh - 1.5rem); }
       .hero-content { padding: 6rem 0 2.25rem; }
       h1 { margin-bottom: .75rem; font-size: clamp(2.25rem, 9.8vw, 3rem); }
@@ -566,10 +627,16 @@
         <span>Идеальная<br>детская</span>
       </a>
       <div class="nav-links" id="navLinks">
-        <a href="#projects">Проекты</a>
-        <a href="#method">Метод</a>
-        <a href="#package">Что входит</a>
-        <a href="#questions">Вопросы</a>
+        <div class="nav-links-list">
+          <a href="#projects">Проекты</a>
+          <a href="#method">Метод</a>
+          <a href="#package">Что входит</a>
+          <a href="#questions">Вопросы</a>
+        </div>
+        <div class="mobile-menu-footer">
+          <a class="button mobile-menu-cta" href="#contact">Записаться на бесплатный разбор</a>
+          <p class="mobile-menu-note">Санкт-Петербург<br>Онлайн по всей России</p>
+        </div>
       </div>
       <a class="nav-cta" href="#contact">Бесплатный разбор →</a>
       <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">Меню</button>
@@ -798,12 +865,12 @@
         <form class="contact-form" id="contactForm" data-reveal>
           <h3>Записаться на разбор</h3>
           <div class="field">
-            <label for="name">Как вас зовут</label>
-            <input id="name" name="name" type="text" autocomplete="name" placeholder="Ваше имя">
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" autocomplete="name">
           </div>
           <div class="field">
             <label for="contactField">Телефон или Telegram</label>
-            <input id="contactField" name="contact" type="text" autocomplete="tel" placeholder="Как с вами связаться">
+            <input id="contactField" name="contact" type="text" autocomplete="tel">
           </div>
           <button class="button" type="submit">Записаться</button>
           <p class="form-message" id="formMessage" role="status"></p>
@@ -827,7 +894,14 @@
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
 
-    const syncHeader = () => header.classList.toggle('scrolled', window.scrollY > 24);
+    const syncHeader = () => header.classList.toggle('scrolled', navLinks.classList.contains('open') || window.scrollY > 24);
+    const closeMenu = () => {
+      navLinks.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = 'Меню';
+      syncHeader();
+    };
     syncHeader();
     window.addEventListener('scroll', syncHeader, { passive: true });
 
@@ -839,12 +913,19 @@
       header.classList.toggle('scrolled', open || window.scrollY > 24);
     });
 
-    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-      document.body.classList.remove('menu-open');
-      menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.textContent = 'Меню';
-    }));
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && navLinks.classList.contains('open')) {
+        closeMenu();
+        menuButton.focus();
+      }
+    });
+
+    const desktopMenu = window.matchMedia('(min-width: 1001px)');
+    desktopMenu.addEventListener('change', event => {
+      if (event.matches) closeMenu();
+    });
 
     form.addEventListener('submit', event => {
       event.preventDefault();
