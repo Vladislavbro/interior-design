@@ -23,9 +23,18 @@ class Lead(BaseModel):
 
 def telegram(method: str, data: dict[str, Any] | None = None) -> dict[str, Any]:
     url = f"https://api.telegram.org/bot{TOKEN}/{method}"
-    response = requests.post(url, json=data or {}, timeout=10)
-    response.raise_for_status()
-    return response.json()
+    try:
+        response = requests.post(url, json=data or {}, timeout=(5, 10))
+        response.raise_for_status()
+        result = response.json()
+        if not result.get("ok"):
+            raise ValueError("Telegram rejected the request")
+        return result
+    except (requests.RequestException, ValueError):
+        # Do not log request exceptions: their URL contains the bot token.
+        raise HTTPException(
+            502, "Не удалось отправить заявку. Попробуйте позже или напишите в Telegram."
+        ) from None
 
 
 def valid_contact(value: str) -> bool:
