@@ -123,21 +123,10 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: .7rem;
       font-family: "Prata", Georgia, serif;
       font-size: 1.05rem;
       line-height: 1.15;
       text-decoration: none;
-    }
-    .brand-mark {
-      display: grid;
-      width: 34px;
-      aspect-ratio: 1;
-      border: 1px solid currentColor;
-      place-items: center;
-      font-family: "Golos", sans-serif;
-      font-size: .63rem;
-      letter-spacing: .05em;
     }
     .nav-links,
     .nav-links-list { display: flex; align-items: center; gap: 2rem; }
@@ -501,6 +490,7 @@
     @media (max-width: 1000px) {
       :root { --wrap: min(100% - 40px, 1380px); }
       .nav { grid-template-columns: 1fr auto; }
+      .brand { font-size: clamp(.82rem, 2.4vw, 1.05rem); }
       .nav-links, .nav-cta { display: none; }
       .menu-button {
         min-height: 44px;
@@ -655,10 +645,7 @@
 <body>
   <header class="site-header" id="header">
     <nav class="nav" aria-label="Основная навигация">
-      <a class="brand" href="#top" aria-label="Идеальная детская — наверх">
-        <span class="brand-mark">ИД</span>
-        <span>Идеальная<br>детская</span>
-      </a>
+      <a class="brand" href="#top" aria-label="Психология пространства — наверх">Психология пространства</a>
       <div class="nav-links" id="navLinks">
         <div class="nav-links-list">
           <a href="#projects">Проекты</a>
