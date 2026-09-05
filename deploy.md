@@ -1,0 +1,1 @@
+ssh design-cite 'sh /opt/interior-design/deploy/update.sh'
