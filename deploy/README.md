@@ -1,6 +1,6 @@
 # Развёртывание
 
-Сервер: `ssh design-cite`, сайт: http://45.132.18.135.
+Сервер: `ssh design-cite`, сайт: https://sadalskaya.ru.
 
 Код передаётся через отдельный bare Git-репозиторий `/opt/interior-design.git`.
 Рабочая копия: `/opt/interior-design`. Python 3.12 и зависимости устанавливает uv
@@ -23,9 +23,9 @@ ssh design-cite 'systemctl status interior-design caddy --no-pager'
 ssh design-cite 'journalctl -u interior-design -n 50 --no-pager'
 ```
 
-Конфигурация пока для HTTP по IP. После подключения домена необходимо
-заменить :80 на домен в deploy/Caddyfile и выполнить обновление.
-Caddy автоматически выпустит и будет продлевать HTTPS-сертификат.
+Единственный исходный конфиг Caddy находится в `Caddyfile` в корне проекта.
+При обновлении он проверяется, копируется в `/etc/caddy/Caddyfile` и применяется
+мягкой перезагрузкой. Caddy сам выпускает и продлевает HTTPS-сертификаты.
 
 На сервере адрес Telegram API из DNS (`149.154.166.110`) не отвечал.
 В `/etc/hosts` задан доступный официальный адрес `149.154.167.220 api.telegram.org`;
