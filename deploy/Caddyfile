@@ -1,0 +1,15 @@
+:80 {
+    encode gzip
+
+    handle /api/* {
+        request_body {
+            max_size 16KB
+        }
+        reverse_proxy 127.0.0.1:8001
+    }
+
+    handle {
+        root * /opt/interior-design/public
+        file_server
+    }
+}

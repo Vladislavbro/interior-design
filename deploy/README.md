@@ -4,7 +4,7 @@
 
 Код передаётся через отдельный bare Git-репозиторий `/opt/interior-design.git`.
 Рабочая копия: `/opt/interior-design`. Python 3.12 и зависимости устанавливает uv
-по `uv.lock`. Nginx раздаёт `public/` и проксирует `/api/` на systemd-сервис.
+по `uv.lock`. Caddy раздаёт `public/` и проксирует `/api/` на systemd-сервис.
 
 Обновление после коммита (из локального проекта):
 
@@ -19,9 +19,10 @@ ssh design-cite 'sh /opt/interior-design/deploy/update.sh'
 Диагностика:
 
 ```sh
-ssh design-cite 'systemctl status interior-design nginx --no-pager'
+ssh design-cite 'systemctl status interior-design caddy --no-pager'
 ssh design-cite 'journalctl -u interior-design -n 50 --no-pager'
 ```
 
 Конфигурация пока для HTTP по IP. После подключения домена необходимо
-настроить имя сервера и HTTPS, а также обновить deploy/nginx.conf.
+заменить :80 на домен в deploy/Caddyfile и выполнить обновление.
+Caddy автоматически выпустит и будет продлевать HTTPS-сертификат.
