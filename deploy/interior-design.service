@@ -1,0 +1,21 @@
+[Unit]
+Description=Interior design Telegram lead API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=interior-design
+Group=interior-design
+WorkingDirectory=/opt/interior-design
+EnvironmentFile=/etc/interior-design.env
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/interior-design/.venv/bin/uvicorn server:app --host 127.0.0.1 --port 8001 --proxy-headers --forwarded-allow-ips=127.0.0.1
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+
+[Install]
+WantedBy=multi-user.target
