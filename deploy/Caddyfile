@@ -1,4 +1,4 @@
-:80 {
+sadalskaya.ru {
     encode gzip
 
     handle /api/* {
@@ -12,4 +12,8 @@
         root * /opt/interior-design/public
         file_server
     }
+}
+
+www.sadalskaya.ru {
+    redir https://sadalskaya.ru{uri} permanent
 }
