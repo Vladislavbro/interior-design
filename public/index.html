@@ -6,6 +6,20 @@
   <meta name="description" content="Дизайн детской с участием детского психолога: консультации, планировка, визуальная концепция и список мебели в одном проекте.">
   <meta name="theme-color" content="#53666b">
   <title>Идеальная детская — дизайн, который начинается с ребёнка</title>
+  <!-- Yandex.Metrika counter: production domains only. -->
+  <script>
+    if (['sadalskaya.ru', 'www.sadalskaya.ru'].includes(location.hostname)) {
+      (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a);
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=112326614', 'ym');
+
+      ym(112326614, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:'dataLayer', referrer:document.referrer, url:location.href, accurateTrackBounce:true, trackLinks:true});
+    }
+  </script>
+  <!-- /Yandex.Metrika counter -->
   <noscript><style>[data-reveal] { opacity: 1 !important; transform: none !important; }</style></noscript>
   <style>
     @font-face {
@@ -163,13 +177,34 @@
     .menu-button {
       display: none;
       justify-self: end;
+      width: 44px;
+      height: 44px;
+      padding: 0;
       border: 0;
       background: transparent;
       color: inherit;
       cursor: pointer;
-      font-size: .82rem;
-      font-weight: 600;
     }
+    .menu-icon {
+      position: relative;
+      width: 22px;
+      height: 12px;
+    }
+    .menu-icon::before,
+    .menu-icon::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: currentColor;
+      opacity: .78;
+      transition: top .2s ease, transform .2s ease, opacity .2s ease;
+    }
+    .menu-icon::before { top: 1px; }
+    .menu-icon::after { top: 10px; }
+    .menu-button[aria-expanded="true"] .menu-icon::before { top: 5px; transform: rotate(45deg); }
+    .menu-button[aria-expanded="true"] .menu-icon::after { top: 5px; transform: rotate(-45deg); }
 
     .hero {
       position: relative;
@@ -493,10 +528,8 @@
       .brand { font-size: clamp(.82rem, 2.4vw, 1.05rem); }
       .nav-links, .nav-cta { display: none; }
       .menu-button {
-        min-height: 44px;
-        padding: 0;
-        display: inline-flex;
-        align-items: center;
+        display: inline-grid;
+        place-items: center;
       }
       body.menu-open .site-header { backdrop-filter: none; }
       .nav-links.open {
@@ -663,7 +696,9 @@
         </div>
       </div>
       <a class="nav-cta" href="#contact">Бесплатный разбор →</a>
-      <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="navLinks">Меню</button>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="navLinks">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
     </nav>
   </header>
 
@@ -928,7 +963,7 @@
       navLinks.classList.remove('open');
       document.body.classList.remove('menu-open');
       menuButton.setAttribute('aria-expanded', 'false');
-      menuButton.textContent = 'Меню';
+      menuButton.setAttribute('aria-label', 'Открыть меню');
       syncHeader();
     };
     syncHeader();
@@ -938,7 +973,7 @@
       const open = navLinks.classList.toggle('open');
       document.body.classList.toggle('menu-open', open);
       menuButton.setAttribute('aria-expanded', String(open));
-      menuButton.textContent = open ? 'Закрыть' : 'Меню';
+      menuButton.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
       header.classList.toggle('scrolled', open || window.scrollY > 24);
     });
 
@@ -1002,6 +1037,14 @@
 
         form.reset();
         formMessage.textContent = 'Спасибо! Заявка отправлена.';
+        // Analytics must not change the outcome of a successfully delivered lead.
+        try {
+          if (['sadalskaya.ru', 'www.sadalskaya.ru'].includes(location.hostname) && typeof window.ym === 'function') {
+            window.ym(112326614, 'reachGoal', 'lead_sent');
+          }
+        } catch (analyticsError) {
+          console.warn('Не удалось передать цель в Метрику. Заявка отправлена.');
+        }
       } catch (error) {
         formMessage.textContent = error.message || 'Не удалось отправить. Попробуйте ещё раз или напишите в Telegram.';
       } finally {
